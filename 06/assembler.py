@@ -69,8 +69,15 @@ class Assembler:
             print(instruction)
             print(e)
 
-    def translate(self, instruction):
+    def _translate(self, instruction):
         if instruction[0] == "A":
             return self._translate_a(instruction)
         else:
             return self._translate_c(instruction)
+
+    def generate_code(self, instructions):
+        hack_code = []
+        for instruction in instructions:
+            binary = self._translate(instruction)
+            hack_code.append(binary)
+        return hack_code
